@@ -1,14 +1,17 @@
 import React from 'react';
 import { NavLink } from 'react-router';
+import '../Header/Navbar.css';
 
 const Navbar = () => {
 
     const links = (
     <>
-    <li><NavLink to='/'>Home</NavLink></li>
-    <li><NavLink to='/all-properties'>All Properties</NavLink></li>
-    <li><NavLink to='/add-properties'>Add Properties</NavLink></li>
-    <li><NavLink to='/my-properties'>My Properties</NavLink></li>
+    <li><NavLink to='/' className="font-bold">Home</NavLink></li>
+    <li><NavLink to='/all-properties' className="font-bold">All Properties</NavLink></li>
+    <li><NavLink to='/add-properties' className="font-bold">Add Properties</NavLink></li>
+    <li><NavLink to='/my-properties' className="font-bold">My Properties</NavLink></li>
+    <li><NavLink to='/register' className="font-bold">Register</NavLink></li>
+    <li><NavLink to='/login' className="font-bold">Login</NavLink></li>
     </>
   )
         
@@ -25,7 +28,11 @@ const Navbar = () => {
         {links}
       </ul>
     </div>
-    <a className="btn btn-ghost text-xl">Home Nest</a>
+    
+    <div>
+      <NavLink to='/' className="btn btn-ghost text-xl">Home Nest</NavLink>
+      <p className='text-xs font-semibold'>A Real Estate Listing Portal</p>
+    </div>
   </div>
   <div className="navbar-center hidden lg:flex">
     <ul className="menu menu-horizontal px-1">
@@ -33,7 +40,8 @@ const Navbar = () => {
     </ul>
   </div>
   <div className="navbar-end">
-    <a className="btn">Login</a>
+    {/* <a className="btn">Login</a> */}
+    <button><NavLink to='/login'>Login</NavLink></button>
   </div>
 </div>
     );

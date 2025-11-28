@@ -4,3 +4,4 @@ Installation
 3. daisyui
 4. google font - Inter
 5. npm install firebase
+6.
