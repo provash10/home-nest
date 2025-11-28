@@ -4,16 +4,28 @@ import '../Header/Navbar.css';
 import { AuthContext } from '../../Contexts/AuthContext/AuthContext';
 
 const Navbar = () => {
-   const {user} = use(AuthContext);
+   const {user,signOutUser} = use(AuthContext);
     console.log(user);
+
+    const handleSignOut = () =>{
+      signOutUser()
+       .then((result)=>{
+            console.log(result)
+            alert('Signout Successfull.')
+        })
+        .catch(error=>{
+            console.log(error)
+        })
+    }
+
     const links = (
     <>
     <li><NavLink to='/' className="font-bold">Home</NavLink></li>
     <li><NavLink to='/all-properties' className="font-bold">All Properties</NavLink></li>
     <li><NavLink to='/add-properties' className="font-bold">Add Properties</NavLink></li>
     <li><NavLink to='/my-properties' className="font-bold">My Properties</NavLink></li>
-    <li><NavLink to='/register' className="font-bold">Register</NavLink></li>
-    <li><NavLink to='/login' className="font-bold">Login</NavLink></li>
+    {/* <li><NavLink to='/register' className="font-bold">Register</NavLink></li>
+    <li><NavLink to='/login' className="font-bold">Login</NavLink></li> */}
     </>
   )
         
@@ -44,7 +56,7 @@ const Navbar = () => {
   <div className="navbar-end">
     {/* <a className="btn">Login</a> */}
     {
-      user ? <a className="btn">Sign Out</a> : 
+      user ? <a onClick={handleSignOut} className="btn">Sign Out</a> : 
       <Link to='/login'>Login</Link>
     }
   </div>
