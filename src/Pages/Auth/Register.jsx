@@ -1,8 +1,30 @@
-import React from 'react';
+import React, { use } from 'react';
 import { Link } from 'react-router';
+import { AuthContext } from '../../Contexts/AuthContext/AuthContext';
 
 const Register = () => {
-    
+    // const authInfo = use(AuthContext);
+    // console.log('register', authInfo);
+    const {createUser} = use(AuthContext);
+    console.log('register', createUser);
+
+    const handleRegister = (event)=>{
+        event.preventDefault();
+        // const name = event.target.email.value;
+        // const photo = event.target.photo.value;
+        const email = event.target.email.value;
+        const password = event.target.password.value;
+
+        // console.log({name, photo, email, password});
+        createUser(email,password)
+        .then((result)=>{
+            console.log(result.user)
+        })
+        .catch(error=>{
+            console.log(error)
+        })
+
+    }
     return (
 
          <div className="hero bg-base-200 min-h-screen">
@@ -18,7 +40,7 @@ const Register = () => {
                 <div className="card bg-base-100 w-full max-w-sm shadow-2xl lg:w-1/2">
                 <h1 className="text-center text-2xl font-bold mt-2">Register now !!</h1>
                     <div className="card-body">
-                        <form>
+                        <form onSubmit={handleRegister}>
                             <fieldset className="fieldset">
                                 {/* Name */}
                                 <label className="label">Name</label>

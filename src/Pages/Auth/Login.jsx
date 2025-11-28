@@ -1,7 +1,27 @@
-import React from 'react';
+import React, { use } from 'react';
 import { Link } from 'react-router';
+import { AuthContext } from '../../Contexts/AuthContext/AuthContext';
 
 const Login = () => {
+    const {signInUser} = use(AuthContext);
+    console.log(signInUser);
+
+    const handleLogIn = (event) =>{
+        event.preventDefault();
+         const email = event.target.email.value;
+        const password = event.target.password.value;
+
+        console.log(email, password); //checked
+        
+        signInUser(email,password)
+        .then((result)=>{
+            console.log(result.user)
+        })
+        .catch(error=>{
+            console.log(error)
+        })
+    }
+
     return (
         <div className="hero bg-base-200 min-h-screen">
             
@@ -16,7 +36,7 @@ const Login = () => {
                 <div className="card bg-base-100 w-full max-w-sm shadow-2xl lg:w-1/2">
                 <h1 className="text-center text-2xl font-bold mt-2">Login now !!</h1>
                     <div className="card-body">
-                        <form>
+                        <form onSubmit={handleLogIn}>
                             <fieldset className="fieldset">
                                 {/* Email */}
                                 <label className="label">Email</label>
