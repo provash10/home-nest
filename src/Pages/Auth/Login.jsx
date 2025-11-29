@@ -1,9 +1,15 @@
-import React, { use } from 'react';
+import React, { use, useState } from 'react';
 import { Link, useLocation, useNavigate } from 'react-router';
 import { AuthContext } from '../../Contexts/AuthContext/AuthContext';
+import { FaEye, FaEyeSlash } from 'react-icons/fa';
+import toast from 'react-hot-toast';
+
 
 const Login = () => {
-    const { signInUser,signInWithGoogle } = use(AuthContext);
+    const [show, setShow] = useState(false);
+    const [error, setError] = useState("");
+
+    const { signInUser, signInWithGoogle } = use(AuthContext);
     console.log(signInUser);
 
     const location = useLocation();
@@ -17,26 +23,48 @@ const Login = () => {
 
         console.log(email, password); //checked
 
+        // validation
+        const emailPattern = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+        if (!emailPattern.test(email)) {
+            // setError("Please enter a valid email address");
+            toast.error("Invalid email format !!!");
+            return;
+        }
+
+        
+        if (password.length === 0) {
+            // setError("Password cannot be empty");
+            toast.error("Password required !!")
+            return;
+        }
+
         signInUser(email, password)
             .then((result) => {
                 console.log(result.user)
                 event.target.reset();
-                navigate(location.state || '/')
+                toast.success("Login successful!");
+                // navigate(location.state || '/')
+                navigate(`${location.state ? location.state : "/"}`);
             })
             .catch(error => {
-                console.log(error)
+                console.log(error);
+                const errorCode = error.code;
+                setError(errorCode);
+                // alert
+                  toast.error("Login failed: " + error.message);
             })
     }
 
     const handleGoogleSignIn = () => {
         signInWithGoogle()
-         .then((result) => {
+            .then((result) => {
                 console.log(result.user)
                 // event.target.reset();
                 navigate(location?.state || '/')
             })
             .catch(error => {
-                console.log(error)
+                console.log(error);
+                  toast.error("Google sign-in failed: " + error.message);
             })
 
     }
@@ -57,15 +85,28 @@ const Login = () => {
                     <div className="card-body">
                         <form onSubmit={handleLogIn}>
                             <fieldset className="fieldset">
-                                {/* Email */}
+                                {/* email */}
                                 <label className="label">Email</label>
-                                <input type="email" name="email" className="input" placeholder="Email" />
+                                <input type="email" name="email" className="input" placeholder="Email" required />
 
                                 {/* Password */}
-                                <label className="label">Password</label>
-                                <input type="password" name="password" className="input" placeholder="Password" />
+                                <div className="relative">
+                                    <label className="block text-sm mb-1">Password</label>
+                                    <input
+                                        // type="password"
+                                        type={show ? "text" : "password"}
+                                        name="password"
+                                        placeholder="••••••••"
+                                        className="input input-bordered w-full bg-white/20 text-black placeholder-white/60 focus:outline-none focus:ring-2 focus:ring-blue-400"
+                                        required />
+                                    <span onClick={() => setShow(!show)} className="absolute right-[8px] top-[36px] cursor-pointer z-50 text-[black]">{show ? <FaEye /> : <FaEyeSlash />}</span>
+                                    {/* forget password */}
+                                    <button type="button" className=" flex justify-start font-bold hover:underline hover:text-black cursor-pointer">
+                                        Forget Password ?</button>
+                                </div>
 
-                                <div><a className="link link-hover">Forgot password?</a></div>
+                                {error && <p className='text-red-600'>{error}</p>}
+
 
                                 <button className="btn btn-neutral mt-4">Login</button>
                             </fieldset>

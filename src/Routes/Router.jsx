@@ -7,11 +7,13 @@ import MyProperties from "../Pages/MyProperties/MyProperties";
 import Register from "../Pages/Auth/Register";
 import Login from "../Pages/Auth/Login";
 import PrivateRoute from "./PrivateRoute";
+import LoadingHydrate from "../Loader/LoadingHydrate";
 
 export const router = createBrowserRouter([
     {
         path: '/',
         element: <Root></Root>,
+        hydrateFallbackElement: <LoadingHydrate></LoadingHydrate>,
         children:[
             {
                 index: true,
@@ -19,18 +21,15 @@ export const router = createBrowserRouter([
             },
             {
                 path: 'all-properties',
-                element: <PrivateRoute>
-                    <AllProperties></AllProperties>,
-                </PrivateRoute>,
+                element: <AllProperties></AllProperties>,
             },
             {
                 path: 'add-properties',
-                element: <AddProperties></AddProperties>
+                element: <PrivateRoute>
+                    <AddProperties></AddProperties>,
+                </PrivateRoute>,
             },
-            {
-                path: 'all-properties',
-                element: <AllProperties></AllProperties>,
-            },
+           
             {
                 path: 'my-properties',
                 element: <PrivateRoute>
