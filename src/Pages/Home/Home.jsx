@@ -4,6 +4,7 @@ import { useLoaderData } from 'react-router';
 const Home = () => {
     const [search, setSearch] = useState('');
     const data = useLoaderData();
+    
     // console.log(data);
     const properties = data || [];
 

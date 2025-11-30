@@ -8,6 +8,7 @@ import Register from "../Pages/Auth/Register";
 import Login from "../Pages/Auth/Login";
 import PrivateRoute from "./PrivateRoute";
 import LoadingHydrate from "../Loader/LoadingHydrate";
+import PropertyDetails from "../Pages/AllProperties/PropertyDetails";
 
 export const router = createBrowserRouter([
     {
@@ -18,12 +19,18 @@ export const router = createBrowserRouter([
             {
                 index: true,
                 element: <Home></Home>,
-                loader: () => fetch('http://localhost:3000/properties')
             },
             {
                 path: 'all-properties',
                 element: <AllProperties></AllProperties>,
                 loader: () => fetch('http://localhost:3000/properties')
+            },
+            {
+                path: '/property-details/:id',
+                element: <PrivateRoute>
+                    <PropertyDetails></PropertyDetails>
+                </PrivateRoute>,
+                loader: ({params}) => fetch (`http://localhost:3000/properties/${params.id}`)
             },
             {
                 path: 'add-properties',
