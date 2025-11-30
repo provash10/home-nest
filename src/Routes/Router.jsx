@@ -22,6 +22,7 @@ export const router = createBrowserRouter([
             {
                 path: 'all-properties',
                 element: <AllProperties></AllProperties>,
+                loader: () => fetch('http://localhost:3000/properties')
             },
             {
                 path: 'add-properties',
