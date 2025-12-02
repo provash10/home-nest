@@ -15,7 +15,7 @@ const PropertyCard = ({property}) => {
                 <p className="text-xl font-semibold p-2  text-black mb-1">{category}</p>
                 <p className="text-black mb-2 p-2 text-sm">{short_description}</p>
                 <div className="flex justify-between items-center mb-2 px-4">
-                    <span className="text-black font-bold text-sm">$ {price}</span>
+                    <span className="text-black font-bold text-sm"> {price}</span>
                     <span className="text-black font-bold text-xs">{location}</span>
                 </div>
 

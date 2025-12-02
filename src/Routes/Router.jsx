@@ -9,6 +9,7 @@ import Login from "../Pages/Auth/Login";
 import PrivateRoute from "./PrivateRoute";
 import LoadingHydrate from "../Loader/LoadingHydrate";
 import PropertyDetails from "../Pages/AllProperties/PropertyDetails";
+import UpdateProperty from "../Pages/AllProperties/UpdateProperty";
 
 export const router = createBrowserRouter([
     {
@@ -29,6 +30,13 @@ export const router = createBrowserRouter([
                 path: '/property-details/:id',
                 element: <PrivateRoute>
                     <PropertyDetails></PropertyDetails>
+                </PrivateRoute>,
+                loader: ({params}) => fetch (`http://localhost:3000/properties/${params.id}`)
+            },
+            {
+                path: '/update-property/:id',
+                element: <PrivateRoute>
+                    <UpdateProperty></UpdateProperty>
                 </PrivateRoute>,
                 loader: ({params}) => fetch (`http://localhost:3000/properties/${params.id}`)
             },

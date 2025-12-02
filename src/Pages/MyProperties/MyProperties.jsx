@@ -1,14 +1,16 @@
 import React from 'react';
+import Card from '../../Components/Uiverse/Card';
 
 const MyProperties = () => {
     return (
         <div className="min-h-screen bg-gray-50 py-10 px-5">
       <h1 className="text-3xl font-bold text-center mb-8">My Properties</h1>
-
-      <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6">
+     
+        <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6">
 
        
-        <div className="bg-white rounded-lg shadow-md hover:shadow-xl transition-shadow duration-300 overflow-hidden">
+    
+         <div className="bg-white rounded-lg shadow-md hover:shadow-xl transition-shadow duration-300 overflow-hidden">
           <img
             src="https://i.ibb.co/y89y5cF/house.jpg"
             alt="Property 1"
@@ -35,6 +37,7 @@ const MyProperties = () => {
             </button>
           </div>
         </div>
+
 
        
         <div className="bg-white rounded-lg shadow-md hover:shadow-xl transition-shadow duration-300 overflow-hidden">
@@ -95,6 +98,8 @@ const MyProperties = () => {
         </div>
 
       </div>
+    
+      
     </div>
     );
 };

@@ -5,6 +5,7 @@ import { AuthContext } from '../../Contexts/AuthContext/AuthContext';
 import userImg from '../../assets/user.png';
 import toast from 'react-hot-toast';
 
+
 const Navbar = () => {
   const { user, signOutUser } = use(AuthContext);
   // console.log(user);
