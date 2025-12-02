@@ -4,5 +4,7 @@ Installation
 3. daisyui
 4. google font - Inter
 5. npm install firebase
-6. React Icon
-7. react hot toast
+6. mongodb
+7. React Icon
+8. react hot toast
+9. npm i sweetalert2

@@ -1,15 +1,55 @@
 import React from 'react';
 import { FaBackward } from 'react-icons/fa';
-import { Link, useLoaderData } from 'react-router';
+import { Link, useLoaderData, useNavigate } from 'react-router';
+import Swal from 'sweetalert2';
 
 
 const PropertyDetails = () => {
   const data = useLoaderData();
   console.log(data) //checked
   const property = data?.result;
+  const navigate = useNavigate();
 
   if (!property) {
     return <p>Loading...</p>;
+  }
+
+  const handleDeleteProperty = () => {
+    Swal.fire({
+      title: "Are you sure?",
+      text: "You won't be able to revert this!",
+      icon: "warning",
+      showCancelButton: true,
+      confirmButtonColor: "#3085d6",
+      cancelButtonColor: "#d33",
+      confirmButtonText: "Yes, delete it!"
+    }).then((result) => {
+      if (result.isConfirmed) {
+
+        fetch(`http://localhost:3000/properties/${property._id}`, {
+          method: "DELETE",
+          headers: {
+            "Content-Type": "application/json",
+          },
+
+          // body: formData  -->400 showing
+          // body: JSON.stringify(formData)
+        })
+          .then(res => res.json())
+          .then(data => {
+            console.log(data)
+            navigate('/all-properties')
+            Swal.fire({
+              title: "Deleted!",
+              text: "Your file has been deleted.",
+              icon: "success"
+            });
+          })
+          .catch(err => {
+            console.log(err)
+          })
+      }
+    });
   }
 
   return (
@@ -86,7 +126,7 @@ const PropertyDetails = () => {
               <Link to={`/update-property/${property._id}`} className="px-8 py-2 bg-green-600 text-white text-sm rounded-lg hover:bg-green-700">
                 Update
               </Link>
-              <button className="px-8 py-2 bg-red-600 text-white text-sm rounded-lg hover:bg-red-700">
+              <button onClick={handleDeleteProperty} className="px-8 py-2 bg-red-600 text-white text-sm rounded-lg hover:bg-red-700">
                 Delete
               </button>
             </div>

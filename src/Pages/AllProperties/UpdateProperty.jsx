@@ -2,6 +2,7 @@ import React from 'react';
 import toast from 'react-hot-toast';
 import { FaBackward } from 'react-icons/fa';
 import { Link, useLoaderData, useNavigate } from 'react-router';
+import Swal from 'sweetalert2';
 
 
 const UpdateProperty = () => {
@@ -50,6 +51,8 @@ const UpdateProperty = () => {
                 console.log(err)
             })
     }
+
+   
     
     return (
         <div className="min-h-screen flex items-center justify-center bg-gradient-to-br via-purple-300 to-pink-400">
