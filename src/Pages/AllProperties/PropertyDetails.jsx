@@ -1,7 +1,8 @@
-import React from 'react';
+import React, { use, useState } from 'react';
 import { FaBackward } from 'react-icons/fa';
 import { Link, useLoaderData, useNavigate } from 'react-router';
 import Swal from 'sweetalert2';
+import { AuthContext } from '../../Contexts/AuthContext/AuthContext';
 
 
 const PropertyDetails = () => {
@@ -9,6 +10,10 @@ const PropertyDetails = () => {
   console.log(data) //checked
   const property = data?.result;
   const navigate = useNavigate();
+  const {user} = use(AuthContext);
+
+  const [reviewText, setReviewText] = useState('');
+  const [ratingValue, setRatingValue] = useState(0);
 
   if (!property) {
     return <p>Loading...</p>;
@@ -51,6 +56,42 @@ const PropertyDetails = () => {
       }
     });
   }
+
+  const handleSubmitReview = async () => {
+    if (!reviewText || ratingValue === 0) {
+      alert("Please enter review text and rating");
+      return;
+    }
+
+    const reviewData = {
+      userEmail: user.email,
+      reviewerName: user.name,
+      propertyId: property._id,
+      propertyName: property.name,
+      thumbnail: property.image,
+      rating: ratingValue,
+      reviewText,
+      reviewDate: new Date().toISOString().split('T')[0],
+      reviewTime: new Date().toLocaleTimeString()
+    };
+
+    try {
+      const res = await fetch('http://localhost:3000/ratings', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify(reviewData)
+      });
+      const data = await res.json();
+      if (data.success) {
+        Swal.fire("Success!", "Your review has been submitted.", "success");
+        setReviewText('');
+        setRatingValue(0);
+      }
+    } catch (err) {
+      console.error(err);
+      Swal.fire("Error!", "Failed to submit review.", "error");
+    }
+  };
 
   return (
     <div className="bg-gray-50 min-h-screen py-12">
@@ -136,78 +177,41 @@ const PropertyDetails = () => {
 
 
       {/* rating & review */}
+   
       <div className="max-w-4xl mx-auto mt-12 bg-white p-6 rounded-xl shadow">
-        <h2 className="text-2xl font-bold text-gray-900 mb-4">Ratings & Reviews</h2>
-
-
-
-        <div className="mb-6 border rounded-lg p-4 bg-gray-50">
-          <div className="flex flex-col md:flex-row gap-6">
-
-
-            <div className="md:w-2/3">
-              <label className="block text-gray-700 font-medium mb-2">
-                Write a Review:
-              </label>
-              <textarea
-                className="w-full border rounded p-3 h-32"
-                placeholder="Share your experience..."
-              ></textarea>
-            </div>
-
-
-            <div className="md:w-1/3 flex flex-col justify-start gap-4 mt-4">
-              <div>
-                <label className="block text-gray-700 font-medium">
-                  Rating (1-5):
-                </label>
-                <input
-                  type="number"
-                  min="1"
-                  max="5"
-                  className="border w-full p-2 rounded"
-                  placeholder="Rate"
-                />
-              </div>
-
-              <button className="px-6 py-2 bg-blue-600 text-white rounded hover:bg-blue-700">
-                Submit Review
-              </button>
-            </div>
-
+        <h2 className="text-2xl font-bold text-gray-900 mb-4">Write a Review</h2>
+        <div className="mb-6 border rounded-lg p-4 bg-gray-50 flex flex-col md:flex-row gap-6">
+          <div className="md:w-2/3">
+            <label className="block text-gray-700 font-medium mb-2">Review:</label>
+            <textarea
+              value={reviewText}
+              onChange={(e) => setReviewText(e.target.value)}
+              className="w-full border rounded p-3 h-32"
+              placeholder="Share your experience..."
+            />
+          </div>
+          <div className="md:w-1/3 flex flex-col justify-start gap-4 mt-4">
+            <label className="block text-gray-700 font-medium">Rating (1-5):</label>
+            <input
+              type="number"
+              min="1"
+              max="5"
+              value={ratingValue}
+              onChange={(e) => setRatingValue(Number(e.target.value))}
+              className="border w-full p-2 rounded"
+              placeholder="Rate"
+            />
+            <button onClick={handleSubmitReview} className="px-6 py-2 bg-blue-600 text-white rounded hover:bg-blue-700">Submit Review</button>
           </div>
         </div>
 
-
-
-        <div className="space-y-4">
-
-
-          <div className="border p-4 rounded-lg">
-            <div className="flex justify-between">
-              <p className="font-semibold text-gray-800">Michael Brown</p>
-              <p className="text-yellow-500 font-bold"> star</p>
-            </div>
-            <p className="text-gray-600 text-sm mt-1">
-              Very beautiful home with peaceful environment, absolutely worth visiting.
-            </p>
-            <p className="text-xs text-gray-500 mt-2">Reviewed on: 14 Nov 2024</p>
-          </div>
-
-          <div className="border p-4 rounded-lg">
-            <div className="flex justify-between">
-              <p className="font-semibold text-gray-800">Sarah Lee</p>
-              <p className="text-yellow-500 font-bold">star</p>
-            </div>
-            <p className="text-gray-600 text-sm mt-1">
-              Good location, interior design is premium, recommended.
-            </p>
-            <p className="text-xs text-gray-500 mt-2">Reviewed on: 15 Nov 2024</p>
-          </div>
-
+        <div className="text-center mt-8">
+          <Link to='/all-ratings' className="text-center px-8 py-4 bg-green-600 text-white text-xl rounded-lg hover:bg-green-700">
+            See All Ratings
+          </Link>
         </div>
+        
       </div>
-
     </div>
   );
 };

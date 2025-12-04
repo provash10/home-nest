@@ -9,3 +9,5 @@ Installation
 8. react hot toast
 9. npm i sweetalert2
 10. react-responsive-carousel
+11. sweetalert2
+12. 

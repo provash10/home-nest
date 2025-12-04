@@ -10,8 +10,8 @@ const Reviews = ({reviewPromise}) => {
     return (
         <div className='my-24'>
             <div className='text-center mb-24'>
-                <h3 className='text-3xl text-center font-bold my-8'>Review</h3>
-                <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Aliquid, at!</p>
+                <h3 className='text-3xl text-center font-bold my-8'>Reviews</h3>
+                <p>"Best Client - Best Reviews"</p>
             </div>
 
            <Swiper

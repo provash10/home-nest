@@ -8,7 +8,7 @@ const PropertyCard = ({property}) => {
             <img
                 className="w-full h-44 sm:h-48 object-cover"
                 src={image}
-                alt={name}
+                alt={image}
             />
             <div className="p-3 m-2 text-center">
                 <h2 className="text-lg font-bold text-black">{name}</h2>

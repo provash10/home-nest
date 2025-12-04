@@ -40,7 +40,7 @@ const AllProperties = () => {
 
       <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-3">
         {
-          data.map(property=><PropertyCard key={property._id} property={property}></PropertyCard>)
+          filteredProperties.map(property=><PropertyCard key={property._id} property={property}></PropertyCard>)
         }
       </div>
             

@@ -10,6 +10,11 @@ import PrivateRoute from "./PrivateRoute";
 import LoadingHydrate from "../Loader/LoadingHydrate";
 import PropertyDetails from "../Pages/AllProperties/PropertyDetails";
 import UpdateProperty from "../Pages/AllProperties/UpdateProperty";
+import AllRatings from "../Pages/Ratings/AllRatings";
+import MyRatings from "../Pages/Ratings/MyRatings";
+
+
+
 
 export const router = createBrowserRouter([
     {
@@ -54,6 +59,23 @@ export const router = createBrowserRouter([
                     <MyProperties></MyProperties>,
                 </PrivateRoute>,
 
+            },
+            {
+                path: 'all-ratings',
+                element: <AllRatings></AllRatings>,
+                loader: () => fetch('http://localhost:3000/ratings')
+            },
+            {
+                path: 'my-ratings',
+                element: <PrivateRoute>
+                    <MyRatings></MyRatings>,
+                </PrivateRoute>,
+//                 loader: async () => {
+//     const { user } = use(AuthContext);
+//     if (!user?.email) return [];
+//     const res = await fetch(`http://localhost:3000/my-ratings/${user.email}`);
+//     return res.json();
+//   },
             },
             {
                 path: 'register',
