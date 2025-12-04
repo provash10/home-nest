@@ -1,0 +1,52 @@
+[
+  {
+    "name": "John Smith",
+    "address": "New York, NY",
+    "review": "HomeNest helped me rent out my apartment quickly and easily."
+  },
+  {
+    "name": "Emily Johnson",
+    "address": "Los Angeles, CA",
+    "review": "The platform is user-friendly and made finding a new home stress-free."
+  },
+  {
+    "name": "Michael Brown",
+    "address": "Chicago, IL",
+    "review": "I could easily contact property owners through HomeNest. Highly recommended!"
+  },
+  {
+    "name": "Sophia Davis",
+    "address": "Houston, TX",
+    "review": "Property details are very clear, and the review section is very helpful."
+  },
+  {
+    "name": "William Miller",
+    "address": "Phoenix, AZ",
+    "review": "I listed my property in just one day and got great responses."
+  },
+  {
+    "name": "Olivia Wilson",
+    "address": "Philadelphia, PA",
+    "review": "The interface is clean and responsive. Worked perfectly on mobile."
+  },
+  {
+    "name": "James Anderson",
+    "address": "San Antonio, TX",
+    "review": "The search and filter features save a lot of time when looking for properties."
+  },
+  {
+    "name": "Isabella Thomas",
+    "address": "San Diego, CA",
+    "review": "Thanks to the ratings system, I could choose the right property easily."
+  },
+  {
+    "name": "Benjamin Martinez",
+    "address": "Dallas, TX",
+    "review": "Adding a property is quick and simple. My listing looks great online."
+  },
+  {
+    "name": "Mia Hernandez",
+    "address": "San Jose, CA",
+    "review": "HomeNest is a very effective platform. I would definitely recommend it to others."
+  }
+]

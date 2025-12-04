@@ -1,10 +1,11 @@
 import React, { use, useContext } from 'react';
-import { Link } from 'react-router';
+import { Link, useNavigate } from 'react-router';
 import { AuthContext } from '../../Contexts/AuthContext/AuthContext';
 
 const AddProperties = () => {
     // const { user } = use(AuthContext)
     const {user} = useContext(AuthContext)
+    const navigate = useNavigate();
 
     const handleAddProperty = (e) => {
         e.preventDefault();
@@ -38,6 +39,7 @@ const AddProperties = () => {
             .then(res => res.json())
             .then(data => {
                 console.log(data)
+                navigate('/all-properties');
             })
             .catch(err => {
                 console.log(err)

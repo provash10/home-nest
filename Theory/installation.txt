@@ -8,3 +8,4 @@ Installation
 7. React Icon
 8. react hot toast
 9. npm i sweetalert2
+10. react-responsive-carousel

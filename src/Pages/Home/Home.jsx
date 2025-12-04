@@ -1,7 +1,11 @@
 import React, { useState } from 'react';
 import { useLoaderData } from 'react-router';
 import PropertyCard from '../AllProperties/PropertyCard';
+import ChooseUs from './ChooseUs';
+import Banner from './Banner';
+import Reviews from './Reviews';
 
+const reviewPromise = fetch('/reviews.json').then(res=>res.json());
 
 const Home = () => {
     const [search, setSearch] = useState('');
@@ -18,7 +22,7 @@ const Home = () => {
     );
     return (
         <div>
-
+            <Banner></Banner>
             <div className='text-center text-3xl font-bold mt-5 underline'>
                 Featured Property
             </div>
@@ -43,6 +47,8 @@ const Home = () => {
                 }
             </div>
 
+            <ChooseUs></ChooseUs>
+            <Reviews reviewPromise={reviewPromise}></Reviews>
 
         </div>
     );

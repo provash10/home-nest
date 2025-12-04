@@ -53,6 +53,7 @@ export const router = createBrowserRouter([
                 element: <PrivateRoute>
                     <MyProperties></MyProperties>,
                 </PrivateRoute>,
+
             },
             {
                 path: 'register',
