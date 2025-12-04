@@ -7,7 +7,7 @@ import { Link } from 'react-router';
 const MyRatings = () => {
   const [ratings, setRatings] = useState([]);
   const { user } = use(AuthContext);
-  
+
   useEffect(() => {
     if (user?.email) {
       fetch(`http://localhost:3000/my-ratings/${user.email}`)
@@ -31,14 +31,7 @@ const MyRatings = () => {
         </div>
       )}
 
-      {/* <div className="flex gap-2 mt-5 justify-end">
-        <Link className="px-8 py-2 bg-green-600 text-white text-sm rounded-lg hover:bg-green-700">
-          Update
-        </Link>
-        <button className="px-8 py-2 bg-red-600 text-white text-sm rounded-lg hover:bg-red-700">
-          Delete
-        </button>
-      </div> */}
+     
     </div>
   );
 };
