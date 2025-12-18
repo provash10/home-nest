@@ -1,11 +1,14 @@
-import React, { useState } from 'react';
+import React, { Suspense, useState } from 'react';
 import { useLoaderData } from 'react-router';
 import PropertyCard from '../AllProperties/PropertyCard';
 import ChooseUs from './ChooseUs';
 import Banner from './Banner';
 import Reviews from './Reviews';
+import Services from './Services';
+
 
 const reviewPromise = fetch('/reviews.json').then(res=>res.json());
+const servicesPromise = fetch('/services.json').then(res=>res.json());
 
 const Home = () => {
     const [search, setSearch] = useState('');
@@ -48,7 +51,17 @@ const Home = () => {
             </div>
 
             <ChooseUs></ChooseUs>
-            <Reviews reviewPromise={reviewPromise}></Reviews>
+            {/* <Reviews reviewPromise={reviewPromise}></Reviews> */}
+             <Suspense fallback={<p className="text-center my-10">Loading Reviews...</p>}>
+        <Reviews reviewPromise={reviewPromise} />
+      </Suspense>
+
+      <Suspense fallback={<p className="text-center my-10">Loading Services...</p>}>
+        <Services servicesPromise={servicesPromise}></Services>
+      </Suspense>
+         
+        
+      
 
         </div>
     );

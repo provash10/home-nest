@@ -3,51 +3,50 @@ import { Autoplay, EffectCoverflow, Pagination } from 'swiper/modules';
 import { Swiper, SwiperSlide } from 'swiper/react';
 import ReviewCard from './ReviewCard';
 
-const Reviews = ({reviewPromise}) => {
-    const reviews = use(reviewPromise);
-    console.log(reviews);
+import 'swiper/css';
+import 'swiper/css/effect-coverflow';
+import 'swiper/css/pagination';
 
-    return (
-        <div className='my-24'>
-            <div className='text-center mb-24'>
-                <h3 className='text-3xl text-center font-bold my-8'>Reviews</h3>
-                <p>"Best Client - Best Reviews"</p>
-            </div>
+const Reviews = ({ reviewPromise }) => {
+  const reviews = use(reviewPromise);
 
-           <Swiper
-           loop={true}
+  return (
+    <div className='my-24'>
+      <div className='text-center mb-16'>
+        <h3 className='text-3xl font-bold my-4'>Reviews</h3>
+        <p>"Best Client - Best Reviews"</p>
+      </div>
+
+      <Swiper
+        loop={true}
         effect={'coverflow'}
         grabCursor={true}
         centeredSlides={true}
-        // slidesPerView={'auto'}
         slidesPerView={3}
         coverflowEffect={{
           rotate: 30,
-          stretch: '50%',
+          stretch: 50,
           depth: 200,
           modifier: 1,
-          scale: 0.75,
+          scale: 0.8,
           slideShadows: true,
         }}
-
-         autoplay={{
-          delay: 1000,
+        autoplay={{
+          delay: 2000,
           disableOnInteraction: false,
         }}
-
-        pagination={true}
+        pagination={{ clickable: true }}
         modules={[EffectCoverflow, Pagination, Autoplay]}
         className="mySwiper"
       >
-        {
-            reviews.map(review=> <SwiperSlide key={review.id}>
-         <ReviewCard review={review}></ReviewCard>
-        </SwiperSlide>)
-        }
-        
+        {reviews.map(review => (
+          <SwiperSlide key={review._id}>
+            <ReviewCard review={review} />
+          </SwiperSlide>
+        ))}
       </Swiper>
-        </div>
-    );
+    </div>
+  );
 };
 
 export default Reviews;

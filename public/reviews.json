@@ -1,52 +1,92 @@
 [
   {
-    "name": "John Smith",
-    "address": "New York, NY",
-    "review": "HomeNest helped me rent out my apartment quickly and easily."
+    "_id": "rev001",
+    "propertyId": "prop101",
+    "propertyName": "Lake View Apartment",
+    "reviewerName": "John Doe",
+    "rating": 4.5,
+    "reviewText": "Beautiful location and very calm environment.",
+    "reviewerPhoto": "https://randomuser.me/api/portraits/men/10.jpg"
   },
   {
-    "name": "Emily Johnson",
-    "address": "Los Angeles, CA",
-    "review": "The platform is user-friendly and made finding a new home stress-free."
+    "_id": "rev002",
+    "propertyId": "prop102",
+    "propertyName": "Modern City Flat",
+    "reviewerName": "Jane Smith",
+    "rating": 3.8,
+    "reviewText": "Nice flat but parking space is limited.",
+    "reviewerPhoto": "https://randomuser.me/api/portraits/women/25.jpg"
   },
   {
-    "name": "Michael Brown",
-    "address": "Chicago, IL",
-    "review": "I could easily contact property owners through HomeNest. Highly recommended!"
+    "_id": "rev003",
+    "propertyId": "prop103",
+    "propertyName": "Green Valley House",
+    "reviewerName": "Alex Brown",
+    "rating": 5.0,
+    "reviewText": "Excellent property! Spacious rooms and well maintained.",
+    "reviewerPhoto": "https://randomuser.me/api/portraits/men/34.jpg"
   },
   {
-    "name": "Sophia Davis",
-    "address": "Houston, TX",
-    "review": "Property details are very clear, and the review section is very helpful."
+    "_id": "rev004",
+    "propertyId": "prop104",
+    "propertyName": "Downtown Commercial Space",
+    "reviewerName": "Lisa White",
+    "rating": 4.2,
+    "reviewText": "Perfect for business use. Location is ideal.",
+    "reviewerPhoto": "https://randomuser.me/api/portraits/women/12.jpg"
   },
   {
-    "name": "William Miller",
-    "address": "Phoenix, AZ",
-    "review": "I listed my property in just one day and got great responses."
+    "_id": "rev005",
+    "propertyId": "prop105",
+    "propertyName": "Suburban Family Home",
+    "reviewerName": "David Lee",
+    "rating": 2.9,
+    "reviewText": "House is good but maintenance was slow.",
+    "reviewerPhoto": "https://randomuser.me/api/portraits/men/19.jpg"
   },
   {
-    "name": "Olivia Wilson",
-    "address": "Philadelphia, PA",
-    "review": "The interface is clean and responsive. Worked perfectly on mobile."
+    "_id": "rev006",
+    "propertyId": "prop106",
+    "propertyName": "Luxury Penthouse",
+    "reviewerName": "Nina Khan",
+    "rating": 4.9,
+    "reviewText": "Premium experience! Worth every penny.",
+    "reviewerPhoto": "https://randomuser.me/api/portraits/women/8.jpg"
   },
   {
-    "name": "James Anderson",
-    "address": "San Antonio, TX",
-    "review": "The search and filter features save a lot of time when looking for properties."
+    "_id": "rev007",
+    "propertyId": "prop107",
+    "propertyName": "Budget Rental Studio",
+    "reviewerName": "Michael Jordan",
+    "rating": 3.3,
+    "reviewText": "Affordable and decent, but rooms are small.",
+    "reviewerPhoto": "https://randomuser.me/api/portraits/men/22.jpg"
   },
   {
-    "name": "Isabella Thomas",
-    "address": "San Diego, CA",
-    "review": "Thanks to the ratings system, I could choose the right property easily."
+    "_id": "rev008",
+    "propertyId": "prop108",
+    "propertyName": "Riverside Villa",
+    "reviewerName": "Emma Watson",
+    "rating": 4.7,
+    "reviewText": "Amazing view and peaceful surroundings. Loved it!",
+    "reviewerPhoto": "https://randomuser.me/api/portraits/women/5.jpg"
   },
   {
-    "name": "Benjamin Martinez",
-    "address": "Dallas, TX",
-    "review": "Adding a property is quick and simple. My listing looks great online."
+    "_id": "rev009",
+    "propertyId": "prop109",
+    "propertyName": "Urban Smart Apartment",
+    "reviewerName": "Chris Evans",
+    "rating": 4.0,
+    "reviewText": "Smart layout and modern design. Good value for money.",
+    "reviewerPhoto": "https://randomuser.me/api/portraits/men/45.jpg"
   },
   {
-    "name": "Mia Hernandez",
-    "address": "San Jose, CA",
-    "review": "HomeNest is a very effective platform. I would definitely recommend it to others."
+    "_id": "rev010",
+    "propertyId": "prop110",
+    "propertyName": "Countryside Land Plot",
+    "reviewerName": "Sarah Ahmed",
+    "rating": 4.3,
+    "reviewText": "Great investment opportunity with peaceful location.",
+    "reviewerPhoto": "https://randomuser.me/api/portraits/women/30.jpg"
   }
 ]

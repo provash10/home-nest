@@ -1,0 +1,12 @@
+[
+  { "id": 1, "title": "Property Management", "description": "We take care of your property, from maintenance to tenant management.", "icon": "FaHome" },
+  { "id": 2, "title": "Legal Assistance", "description": "Expert legal support for buying, selling, or renting properties.", "icon": "FaBalanceScale" },
+  { "id": 3, "title": "Home Valuation", "description": "Accurate valuation to help you make informed property decisions.", "icon": "FaMoneyBillWave" },
+  { "id": 4, "title": "Property Marketing", "description": "Promote your property to reach the right buyers or renters quickly.", "icon": "FaBullhorn" },
+  { "id": 5, "title": "Interior Design", "description": "Professional interior design to make your property appealing.", "icon": "FaPaintBrush" },
+  { "id": 6, "title": "Mortgage Assistance", "description": "Help with mortgage and financing to simplify your property purchase.", "icon": "FaUniversity" },
+  { "id": 7, "title": "Legal Documentation", "description": "Prepare and verify all legal documents for smooth property transactions.", "icon": "FaFileAlt" },
+  { "id": 8, "title": "Property Inspection", "description": "Detailed inspection services to ensure property quality and safety.", "icon": "FaSearch" },
+  { "id": 9, "title": "Rental Management", "description": "Manage tenants, rent collection, and maintenance for rental properties.", "icon": "FaFileContract" },
+  { "id": 10, "title": "Consultation", "description": "Expert advice to guide you in property investment and buying decisions.", "icon": "FaLightbulb" }
+]
