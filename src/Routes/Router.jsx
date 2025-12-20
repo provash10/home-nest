@@ -7,12 +7,11 @@ import MyProperties from "../Pages/MyProperties/MyProperties";
 import Register from "../Pages/Auth/Register";
 import Login from "../Pages/Auth/Login";
 import PrivateRoute from "./PrivateRoute";
-import LoadingHydrate from "../Loader/LoadingHydrate";
 import PropertyDetails from "../Pages/AllProperties/PropertyDetails";
 import UpdateProperty from "../Pages/AllProperties/UpdateProperty";
 import AllRatings from "../Pages/Ratings/AllRatings";
 import MyRatings from "../Pages/Ratings/MyRatings";
-
+import ErrorPages from "../Loader/ErrorPages";
 
 
 
@@ -20,7 +19,7 @@ export const router = createBrowserRouter([
     {
         path: '/',
         element: <Root></Root>,
-        hydrateFallbackElement: <LoadingHydrate></LoadingHydrate>,
+        ErrorBoundary: ErrorPages,
         children:[
             {
                 index: true,

@@ -1,6 +1,7 @@
 import React, { use, useContext } from 'react';
 import { Link, useNavigate } from 'react-router';
 import { AuthContext } from '../../Contexts/AuthContext/AuthContext';
+import toast from 'react-hot-toast';
 
 const AddProperties = () => {
     // const { user } = use(AuthContext)
@@ -39,10 +40,12 @@ const AddProperties = () => {
             .then(res => res.json())
             .then(data => {
                 console.log(data)
+                toast.success("Property added successfully!");
                 navigate('/all-properties');
             })
             .catch(err => {
                 console.log(err)
+                toast.error("Failed to add property!")
             })
     }
 
