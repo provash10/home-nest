@@ -27,17 +27,17 @@ const PropertyDetails = () => {
       confirmButtonText: "Yes, delete it!"
     }).then((result) => {
       if (result.isConfirmed) {
-        fetch(`http://localhost:3000/properties/${property._id}`, {
+        fetch(`https://homenest-server-ten.vercel.app/properties/${property._id}`, {
           method: "DELETE",
           headers: { "Content-Type": "application/json" }
         })
-        .then(res => res.json())
-        .then(() => {
-          Swal.fire("Deleted!", "Property deleted successfully.", "success");
-           toast.success("Property deleted successfully!");
-          navigate('/all-properties');
-        })
-        .catch(() => Swal.fire("Error!", "Failed to delete property.", "error"));
+          .then(res => res.json())
+          .then(() => {
+            Swal.fire("Deleted!", "Property deleted successfully.", "success");
+            toast.success("Property deleted successfully!");
+            navigate('/all-properties');
+          })
+          .catch(() => Swal.fire("Error!", "Failed to delete property.", "error"));
       }
     });
   }
@@ -45,7 +45,7 @@ const PropertyDetails = () => {
   const handleSubmitReview = async () => {
     if (!reviewText || ratingValue < 1 || ratingValue > 5) {
       Swal.fire("Warning", "Please enter a review and a valid rating (1-5).", "warning");
-       toast.error("Please enter a review and a valid rating (1-5).")
+      toast.error("Please enter a review and a valid rating (1-5).")
       return;
     }
 
@@ -61,7 +61,7 @@ const PropertyDetails = () => {
     };
 
     try {
-      const res = await fetch('http://localhost:3000/ratings', {
+      const res = await fetch('https://homenest-server-ten.vercel.app/ratings', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify(reviewData)
@@ -84,7 +84,7 @@ const PropertyDetails = () => {
   return (
     <div className="bg-gray-50 min-h-screen py-12">
       <div className="max-w-6xl mx-auto grid grid-cols-1 md:grid-cols-2 gap-8">
-        
+
         <div>
           <div className="w-full h-[380px] rounded-xl overflow-hidden shadow">
             <img src={property.image} alt={property.name} className="w-full h-full object-cover" />

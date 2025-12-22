@@ -20,30 +20,30 @@ export const router = createBrowserRouter([
         path: '/',
         element: <Root></Root>,
         ErrorBoundary: ErrorPages,
-        children:[
+        children: [
             {
                 index: true,
                 element: <Home></Home>,
-                loader: () => fetch('http://localhost:3000/featured-properties')
+                loader: () => fetch('https://homenest-server-ten.vercel.app/featured-properties')
             },
             {
                 path: 'all-properties',
                 element: <AllProperties></AllProperties>,
-                loader: () => fetch('http://localhost:3000/properties')
+                loader: () => fetch('https://homenest-server-ten.vercel.app/properties')
             },
             {
                 path: '/property-details/:id',
                 element: <PrivateRoute>
                     <PropertyDetails></PropertyDetails>
                 </PrivateRoute>,
-                loader: ({params}) => fetch (`http://localhost:3000/properties/${params.id}`)
+                loader: ({ params }) => fetch(`https://homenest-server-ten.vercel.app/properties/${params.id}`)
             },
             {
                 path: '/update-property/:id',
                 element: <PrivateRoute>
                     <UpdateProperty></UpdateProperty>
                 </PrivateRoute>,
-                loader: ({params}) => fetch (`http://localhost:3000/properties/${params.id}`)
+                loader: ({ params }) => fetch(`https://homenest-server-ten.vercel.app/properties/${params.id}`)
             },
             {
                 path: 'add-properties',
@@ -51,7 +51,7 @@ export const router = createBrowserRouter([
                     <AddProperties></AddProperties>,
                 </PrivateRoute>,
             },
-           
+
             {
                 path: 'my-properties',
                 element: <PrivateRoute>
@@ -62,19 +62,19 @@ export const router = createBrowserRouter([
             {
                 path: 'all-ratings',
                 element: <AllRatings></AllRatings>,
-                loader: () => fetch('http://localhost:3000/ratings')
+                loader: () => fetch('https://homenest-server-ten.vercel.app/ratings')
             },
             {
                 path: 'my-ratings',
                 element: <PrivateRoute>
                     <MyRatings></MyRatings>,
                 </PrivateRoute>,
-//                 loader: async () => {
-//     const { user } = use(AuthContext);
-//     if (!user?.email) return [];
-//     const res = await fetch(`http://localhost:3000/my-ratings/${user.email}`);
-//     return res.json();
-//   },
+                //                 loader: async () => {
+                //     const { user } = use(AuthContext);
+                //     if (!user?.email) return [];
+                //     const res = await fetch(`https://homenest-server-ten.vercel.app/my-ratings/${user.email}`);
+                //     return res.json();
+                //   },
             },
             {
                 path: 'register',

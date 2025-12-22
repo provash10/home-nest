@@ -12,7 +12,7 @@ const MyProperties = () => {
   useEffect(() => {
     if (!user?.email) return;
 
-    fetch(`http://localhost:3000/my-properties/${user.email}`)
+    fetch(`https://homenest-server-ten.vercel.app/my-properties/${user.email}`)
       .then((res) => res.json())
       .then((data) => {
         setProperties(data);
@@ -20,7 +20,7 @@ const MyProperties = () => {
       });
   }, [user]);
 
-  
+
   const handleDelete = (id) => {
     Swal.fire({
       title: "Are you sure?",
@@ -32,7 +32,7 @@ const MyProperties = () => {
       confirmButtonText: "Yes, delete it!",
     }).then((result) => {
       if (result.isConfirmed) {
-        fetch(`http://localhost:3000/properties/${id}`, {
+        fetch(`https://homenest-server-ten.vercel.app/properties/${id}`, {
           method: "DELETE",
         })
           .then((res) => res.json())
@@ -52,14 +52,14 @@ const MyProperties = () => {
   return (
     <div className="my-10">
 
-      
+
       <h2 className="text-2xl font-bold text-center mb-3">
         My Properties{" "}
         <span className="text-blue-600 text-xl">({properties.length})</span>
       </h2>
       <p className="text-center text-gray-600 mb-6">Manage your listings</p>
 
-      
+
       <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-3">
         {properties.map((property) => (
           <div
@@ -92,7 +92,7 @@ const MyProperties = () => {
               </div>
 
               <div className="flex justify-between items-center gap-3 mt-3">
-                
+
                 <Link
                   to={`/property-details/${property._id}`}
                   className="flex-1 bg-blue-600 text-white text-center py-2 rounded-lg hover:bg-blue-700 transition-colors text-sm font-medium"
@@ -100,7 +100,7 @@ const MyProperties = () => {
                   See Details
                 </Link>
 
-                
+
                 <Link
                   to={`/update-property/${property._id}`}
                   className="flex-1 bg-green-600 text-white text-center py-2 rounded-lg hover:bg-green-700 transition-colors text-sm font-medium"
@@ -108,7 +108,7 @@ const MyProperties = () => {
                   Update
                 </Link>
 
-                
+
                 <button
                   onClick={() => handleDelete(property._id)}
                   className="flex-1 bg-red-600 text-white text-center py-2 rounded-lg hover:bg-red-700 transition-colors text-sm font-medium"

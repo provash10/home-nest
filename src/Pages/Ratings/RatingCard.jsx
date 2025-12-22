@@ -15,7 +15,7 @@ const RatingCard = ({ rating }) => {
 
   return (
     <div className="flex flex-col md:flex-row gap-6 bg-white p-6 rounded-xl shadow hover:shadow-lg transition-all">
-      {/* Property Image */}
+   
       <div className="w-full md:w-1/3 h-48 md:h-auto overflow-hidden rounded-lg">
         <img
           src={thumbnail || 'https://via.placeholder.com/300x200?text=No+Image'}
@@ -24,7 +24,7 @@ const RatingCard = ({ rating }) => {
         />
       </div>
 
-      {/* Review Details */}
+     
       <div className="flex-1 flex flex-col justify-between">
         <div>
           <h3 className="text-xl font-semibold text-gray-800">{propertyName || 'Unknown Property'}</h3>

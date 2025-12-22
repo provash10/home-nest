@@ -12,7 +12,7 @@ const MyRatings = () => {
   useEffect(() => {
     if (!user?.email) return;
 
-    fetch(`http://localhost:3000/my-ratings/${user.email}`)
+    fetch(`https://homenest-server-ten.vercel.app/my-ratings/${user.email}`)
       .then((res) => res.json())
       .then((data) => {
         setRatings(data);
@@ -20,7 +20,7 @@ const MyRatings = () => {
       })
       .catch(() => {
         Swal.fire('Error', 'Failed to load your ratings', 'error');
-         toast.error('Failed to load your ratings');
+        toast.error('Failed to load your ratings');
         setLoading(false);
       });
   }, [user]);

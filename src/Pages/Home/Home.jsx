@@ -60,8 +60,6 @@ const Home = () => {
         <Services servicesPromise={servicesPromise}></Services>
       </Suspense>
          
-        
-      
 
         </div>
     );

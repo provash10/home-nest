@@ -12,7 +12,7 @@ const UpdateProperty = () => {
     console.log(property)
     const navigate = useNavigate();
 
-     const handleUpdateProperty = (e) => {
+    const handleUpdateProperty = (e) => {
         e.preventDefault();
 
         const formData = {
@@ -32,7 +32,7 @@ const UpdateProperty = () => {
 
         console.log(formData); //checked ok
 
-        fetch(`http://localhost:3000/properties/${property._id}`, {
+        fetch(`https://homenest-server-ten.vercel.app/properties/${property._id}`, {
             method: "PUT",
             headers: {
                 "Content-Type": "application/json",
@@ -52,8 +52,8 @@ const UpdateProperty = () => {
             })
     }
 
-   
-    
+
+
     return (
         <div className="min-h-screen flex items-center justify-center bg-gradient-to-br via-purple-300 to-pink-400">
             <form onSubmit={handleUpdateProperty} className="bg-white shadow-2xl rounded-2xl p-10 m-5 space-y-8 border border-gray-200 max-w-3xl w-full">
@@ -79,7 +79,7 @@ const UpdateProperty = () => {
                         <input
                             type="text"
                             defaultValue={property.short_description}
-                            name="short_description" 
+                            name="short_description"
                             placeholder="Enter a short description"
                             className="w-full p-3 border border-gray-300 rounded-xl focus:outline-none focus:ring-2 focus:ring-indigo-400 transition" required
                         />
@@ -90,7 +90,7 @@ const UpdateProperty = () => {
                         <label className="block text-gray-700 font-medium mb-2">Full Description</label>
                         <textarea
                             defaultValue={property.description}
-                              name="description"
+                            name="description"
                             placeholder="Enter full description"
                             className="w-full p-3 border border-gray-300 rounded-xl focus:outline-none focus:ring-2 focus:ring-indigo-400 resize-none h-28 transition"
                         />
@@ -137,7 +137,7 @@ const UpdateProperty = () => {
                         <input
                             type="text"
                             defaultValue={property.image}
-                             name="image"
+                            name="image"
                             placeholder="Enter image URL"
                             className="w-full p-3 border border-gray-300 rounded-xl focus:outline-none focus:ring-2 focus:ring-indigo-400 transition" required
                         />
@@ -171,11 +171,11 @@ const UpdateProperty = () => {
 
                 </div>
 
-                
+
                 <div className='flex justify-between'>
                     <Link to='/all-properties' className="px-4 text-center bg-gradient-to-r from-indigo-600 via-purple-600 to-pink-600 text-white p-2 rounded-2xl text-lg font-semibold hover:scale-105 transform transition-all shadow-lg flex items-center gap-2">
                         <FaBackward /> Back
-                      </Link>
+                    </Link>
 
                     <button type="submit" className="bg-gradient-to-r from-indigo-600 via-purple-600 to-pink-600 text-white p-3 rounded-2xl text-lg font-semibold hover:scale-105 transform transition-all shadow-lg">
                         Update Property

@@ -5,7 +5,7 @@ import toast from 'react-hot-toast';
 
 const AddProperties = () => {
     // const { user } = use(AuthContext)
-    const {user} = useContext(AuthContext)
+    const { user } = useContext(AuthContext)
     const navigate = useNavigate();
 
     const handleAddProperty = (e) => {
@@ -28,7 +28,7 @@ const AddProperties = () => {
 
         console.log(formData); //checked ok
 
-        fetch('http://localhost:3000/properties', {
+        fetch('https://homenest-server-ten.vercel.app/properties', {
             method: "POST",
             headers: {
                 "Content-Type": "application/json",

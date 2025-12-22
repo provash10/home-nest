@@ -98,37 +98,37 @@ const Register = () => {
 
             <div className="hero-content flex-col lg:flex-row w-full px-4">
 
-                {/* left */}
+                
                 <div className="text-center lg:text-left lg:w-1/2 mb-6 lg:mb-0">
                     <h1 className="text-5xl font-bold">Register now !!</h1>
                 </div>
 
-                {/* right */}
+           
                 <div className="card bg-base-100 w-full max-w-sm shadow-2xl lg:w-1/2">
                     <h1 className="text-center text-2xl font-bold mt-2">Register now !!</h1>
                     <div className="card-body">
                         <form onSubmit={handleRegister}>
                             <fieldset className="fieldset">
-                                {/* Name */}
+                      
                                 <label className="label">Name</label>
                                 <input type="text" name="name" className="input" placeholder="Your Name" required />
 
                                 {nameError && <p className='text-red-600'>{nameError}</p>}
-                                {/* Photo  */}
+                     
                                 <label className="label">Photo</label>
                                 <input type="text" name="photo" className="input" placeholder="Your Photo" />
 
-                                {/* Email */}
+                      
                                 <label className="label">Email</label>
                                 <input type="email" name="email" className="input" placeholder="Your Email" required />
 
-                                {/* Password */}
+                          
                                 <div className="relative">
                                     <label className="block text-sm font-medium mb-1">
                                         Password
                                     </label>
                                     <input
-                                        // type="password"
+                                 
                                         type={show ? "text" : "password"}
                                         name="password"
                                         placeholder="••••••••"
