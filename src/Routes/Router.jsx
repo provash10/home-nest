@@ -12,6 +12,8 @@ import UpdateProperty from "../Pages/AllProperties/UpdateProperty";
 import AllRatings from "../Pages/Ratings/AllRatings";
 import MyRatings from "../Pages/Ratings/MyRatings";
 import ErrorPages from "../Loader/ErrorPages";
+import DashboardLayout from "../Layouts/Dashboard/DashboardLayout";
+import Dashboard from "../Pages/Dashboard/Dashboard";
 
 
 
@@ -46,6 +48,14 @@ export const router = createBrowserRouter([
                 loader: ({ params }) => fetch(`https://homenest-server-ten.vercel.app/properties/${params.id}`)
             },
             {
+                path: '/dashboard',
+                element: <DashboardLayout></DashboardLayout>,
+                children:[
+                    {
+                        index: true,
+                        element: <Dashboard></Dashboard>
+                    },
+                     {
                 path: 'add-properties',
                 element: <PrivateRoute>
                     <AddProperties></AddProperties>,
@@ -59,23 +69,51 @@ export const router = createBrowserRouter([
                 </PrivateRoute>,
 
             },
-            {
-                path: 'all-ratings',
-                element: <AllRatings></AllRatings>,
-                loader: () => fetch('https://homenest-server-ten.vercel.app/ratings')
-            },
+            // {
+            //     path: 'all-ratings',
+            //     element: <AllRatings></AllRatings>,
+            //     loader: () => fetch('https://homenest-server-ten.vercel.app/ratings')
+            // },
             {
                 path: 'my-ratings',
                 element: <PrivateRoute>
                     <MyRatings></MyRatings>,
                 </PrivateRoute>,
-                //                 loader: async () => {
-                //     const { user } = use(AuthContext);
-                //     if (!user?.email) return [];
-                //     const res = await fetch(`https://homenest-server-ten.vercel.app/my-ratings/${user.email}`);
-                //     return res.json();
-                //   },
             },
+                ]
+            },
+
+             {
+                path: 'all-ratings',
+                element: <AllRatings></AllRatings>,
+                loader: () => fetch('https://homenest-server-ten.vercel.app/ratings')
+            },
+            
+            // {
+            //     path: 'add-properties',
+            //     element: <PrivateRoute>
+            //         <AddProperties></AddProperties>,
+            //     </PrivateRoute>,
+            // },
+
+            // {
+            //     path: 'my-properties',
+            //     element: <PrivateRoute>
+            //         <MyProperties></MyProperties>,
+            //     </PrivateRoute>,
+
+            // },
+            // {
+            //     path: 'all-ratings',
+            //     element: <AllRatings></AllRatings>,
+            //     loader: () => fetch('https://homenest-server-ten.vercel.app/ratings')
+            // },
+            // {
+            //     path: 'my-ratings',
+            //     element: <PrivateRoute>
+            //         <MyRatings></MyRatings>,
+            //     </PrivateRoute>,
+            // },
             {
                 path: 'register',
                 element: <Register></Register>,

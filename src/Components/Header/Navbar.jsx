@@ -27,9 +27,16 @@ const Navbar = () => {
     <>
       <li><NavLink to='/' className="font-bold">Home</NavLink></li>
       <li><NavLink to='/all-properties' className="font-bold">All Properties</NavLink></li>
-      <li><NavLink to='/add-properties' className="font-bold">Add Properties</NavLink></li>
+
+      <li><NavLink to='/dashboard' className="font-bold">Dashboard</NavLink></li>
+      
+      {/* <li><NavLink to='/dashboard/add-properties' className="font-bold">Add Properties</NavLink></li>
+      <li><NavLink to='/dashboard/my-properties' className="font-bold">My Properties</NavLink></li>
+      <li><NavLink to='/dashboard/my-ratings' className="font-bold">My Ratings</NavLink></li> */}
+
+      {/* <li><NavLink to='/add-properties' className="font-bold">Add Properties</NavLink></li>
       <li><NavLink to='/my-properties' className="font-bold">My Properties</NavLink></li>
-      <li><NavLink to='/my-ratings' className="font-bold">My Ratings</NavLink></li>
+      <li><NavLink to='/my-ratings' className="font-bold">My Ratings</NavLink></li> */}
       {/* <li><NavLink to='/all-ratings' className="font-bold">All Ratings</NavLink></li> */}
       {/* <NavLink
         to="/register"
