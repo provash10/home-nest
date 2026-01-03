@@ -4,9 +4,11 @@ import '../Header/Navbar.css';
 import { AuthContext } from '../../Contexts/AuthContext/AuthContext';
 import userImg from '../../assets/user.png';
 import toast from 'react-hot-toast';
+import useRole from '../../hooks/useRole';
 
 
 const Navbar = () => {
+  const {role} = useRole();
   const { user, signOutUser } = use(AuthContext);
   // console.log(user);
 
@@ -34,18 +36,6 @@ const Navbar = () => {
       <li><NavLink to='/dashboard/my-properties' className="font-bold">My Properties</NavLink></li>
       <li><NavLink to='/dashboard/my-ratings' className="font-bold">My Ratings</NavLink></li> */}
 
-      {/* <li><NavLink to='/add-properties' className="font-bold">Add Properties</NavLink></li>
-      <li><NavLink to='/my-properties' className="font-bold">My Properties</NavLink></li>
-      <li><NavLink to='/my-ratings' className="font-bold">My Ratings</NavLink></li> */}
-      {/* <li><NavLink to='/all-ratings' className="font-bold">All Ratings</NavLink></li> */}
-      {/* <NavLink
-        to="/register"
-        className="bg-green-500 text-white px-4 py-2 rounded-md font-semibold"
-      >
-        Signup
-      </NavLink> */}
-      {/* <li><NavLink to='/register' className="font-bold">Register</NavLink></li>
-    <li><NavLink to='/login' className="font-bold">Login</NavLink></li> */}
     </>
   )
 
