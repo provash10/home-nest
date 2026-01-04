@@ -1,5 +1,5 @@
 import React, { useContext, useState } from 'react';
-import { FaBackward } from 'react-icons/fa';
+import { FaArrowLeft, FaStar } from 'react-icons/fa';
 import { Link, useLoaderData, useNavigate } from 'react-router';
 import Swal from 'sweetalert2';
 import { AuthContext } from '../../Contexts/AuthContext/AuthContext';
@@ -14,38 +14,34 @@ const PropertyDetails = () => {
   const [reviewText, setReviewText] = useState('');
   const [ratingValue, setRatingValue] = useState(0);
 
-  if (!property) return <p>Loading...</p>;
+  if (!property) return null;
 
   const handleDeleteProperty = () => {
     Swal.fire({
-      title: "Are you sure?",
-      text: "You won't be able to revert this!",
-      icon: "warning",
+      title: 'Delete Property?',
+      text: 'This action cannot be undone.',
+      icon: 'warning',
       showCancelButton: true,
-      confirmButtonColor: "#3085d6",
-      cancelButtonColor: "#d33",
-      confirmButtonText: "Yes, delete it!"
-    }).then((result) => {
+      confirmButtonColor: '#2563eb',
+      cancelButtonColor: '#dc2626',
+      confirmButtonText: 'Delete',
+    }).then(result => {
       if (result.isConfirmed) {
         fetch(`https://homenest-server-ten.vercel.app/properties/${property._id}`, {
-          method: "DELETE",
-          headers: { "Content-Type": "application/json" }
+          method: 'DELETE',
         })
-          .then(res => res.json())
           .then(() => {
-            Swal.fire("Deleted!", "Property deleted successfully.", "success");
-            toast.success("Property deleted successfully!");
+            toast.success('Property deleted');
             navigate('/all-properties');
           })
-          .catch(() => Swal.fire("Error!", "Failed to delete property.", "error"));
+          .catch(() => toast.error('Delete failed'));
       }
     });
-  }
+  };
 
   const handleSubmitReview = async () => {
-    if (!reviewText || ratingValue < 1 || ratingValue > 5) {
-      Swal.fire("Warning", "Please enter a review and a valid rating (1-5).", "warning");
-      toast.error("Please enter a review and a valid rating (1-5).")
+    if (!reviewText || ratingValue === 0) {
+      toast.error('Please add review and rating');
       return;
     }
 
@@ -54,114 +50,151 @@ const PropertyDetails = () => {
       reviewerName: user.name,
       propertyId: property._id,
       propertyName: property.name,
-      thumbnail: property.image,
       rating: ratingValue,
       reviewText,
-      reviewDate: new Date().toISOString(),
     };
 
     try {
-      const res = await fetch('https://homenest-server-ten.vercel.app/ratings', {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify(reviewData)
-      });
+      const res = await fetch(
+        'https://homenest-server-ten.vercel.app/ratings',
+        {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify(reviewData),
+        }
+      );
       const data = await res.json();
       if (data.success) {
-        Swal.fire("Success!", "Your review has been submitted.", "success");
-        toast.success("Your review has been submitted!");
+        toast.success('Review submitted');
         setReviewText('');
         setRatingValue(0);
-      } else {
-        Swal.fire("Oops!", data.message || "Failed to submit review.", "error");
       }
-    } catch (err) {
-      console.error(err);
-      Swal.fire("Error!", "Failed to submit review.", "error");
+    } catch {
+      toast.error('Failed to submit review');
     }
   };
 
   return (
-    <div className="bg-gray-50 min-h-screen py-12">
-      <div className="max-w-6xl mx-auto grid grid-cols-1 md:grid-cols-2 gap-8">
+    <section className="py-20 bg-slate-50 dark:bg-slate-900">
+      <div className="max-w-6xl mx-auto px-4">
 
-        <div>
-          <div className="w-full h-[380px] rounded-xl overflow-hidden shadow">
-            <img src={property.image} alt={property.name} className="w-full h-full object-cover" />
+        <Link
+          to="/all-properties"
+          className="inline-flex items-center gap-2 text-sm text-blue-600 mb-6"
+        >
+          <FaArrowLeft /> Back to properties
+        </Link>
+
+        <div className="grid grid-cols-1 lg:grid-cols-2 gap-10">
+
+          {/* nmage & description */}
+          <div>
+            <div className="rounded-2xl overflow-hidden border mb-6">
+              <img
+                src={property.image}
+                alt={property.name}
+                className="w-full h-[420px] object-cover"
+              />
+            </div>
+
+            <div className="bg-white dark:bg-slate-800 border rounded-2xl p-6">
+              <h3 className="text-xl font-semibold mb-3 text-slate-800 dark:text-white">
+                Description
+              </h3>
+              <p className="text-slate-600 dark:text-slate-400 leading-relaxed">
+                {property.description}
+              </p>
+            </div>
           </div>
-          <div className="mt-6 bg-white p-5 rounded-xl shadow">
-            <h2 className="text-xl font-semibold text-gray-800 mb-3">Description</h2>
-            <p className="text-gray-600 leading-relaxed">{property.description}</p>
-          </div>
-        </div>
 
-        {/* Property details */}
-        <div className="bg-white rounded-xl shadow p-6">
-          <h1 className="text-3xl font-bold text-gray-900 mb-4">{property.name}</h1>
-          <p className="text-gray-600 leading-relaxed mb-6">{property.short_description}</p>
+          {/* Info */}
+          <div className="bg-white dark:bg-slate-800 border rounded-2xl p-6">
+            <h1 className="text-3xl font-bold text-slate-800 dark:text-white mb-3">
+              {property.name}
+            </h1>
+            <p className="text-slate-600 dark:text-slate-400 mb-6">
+              {property.short_description}
+            </p>
 
-          <div className="space-y-4">
-            <div className="flex justify-between border-b pb-2">
-              <span className="font-medium text-gray-600">Category :</span>
-              <span className="text-gray-800 font-semibold">{property.category}</span>
-            </div>
-            <div className="flex justify-between border-b pb-2">
-              <span className="font-medium text-gray-600">Price:</span>
-              <span className="text-gray-800 font-semibold">{property.price}</span>
-            </div>
-            <div className="flex justify-between border-b pb-2">
-              <span className="font-medium text-gray-600">Location:</span>
-              <span className="text-gray-800 font-semibold">{property.location}</span>
+            <div className="space-y-4 text-sm">
+              <Info label="Category" value={property.category} />
+              <Info label="Price" value={property.price} />
+              <Info label="Location" value={property.location} />
             </div>
 
-            <div className="border rounded-lg p-4 flex items-center gap-3 mt-4 bg-gray-50">
-              <img src={property.image} className="w-12 h-12 rounded-full object-cover border" alt="" />
+            <div className="mt-6 border rounded-xl p-4 flex items-center gap-4">
+              <img
+                src={property.image}
+                className="w-12 h-12 rounded-full object-cover"
+              />
               <div>
-                <p className="text-sm text-gray-500">Posted by</p>
-                <p className="text-lg font-semibold text-gray-800">{property.userName}</p>
-                <p className="text-sm text-gray-600">{property.userEmail}</p>
-              </div>
-              <div className="ml-auto text-right">
-                <p className="text-sm text-gray-500">Posted on</p>
-                <p className="text-lg font-semibold text-gray-700">{property.createdAt?.slice(0, 10)}</p>
+                <p className="text-xs text-slate-500">Posted by</p>
+                <p className="font-semibold text-slate-800 dark:text-white">
+                  {property.userName}
+                </p>
+                <p className="text-xs text-slate-500">{property.userEmail}</p>
               </div>
             </div>
 
-            <div className="flex justify-center mt-4">
-              <Link to='/all-properties' className="px-4 text-center bg-gradient-to-r from-indigo-600 via-purple-600 to-pink-600 text-white p-2 rounded-2xl text-lg font-semibold hover:scale-105 transform transition-all shadow-lg flex items-center gap-2">
-                <FaBackward /> Back
+            <div className="flex gap-4 mt-6">
+              <Link
+                to={`/update-property/${property._id}`}
+                className="flex-1 text-center py-2 rounded-xl border border-blue-600 text-blue-600 hover:bg-blue-50"
+              >
+                Update
               </Link>
-            </div>
-
-            <div className="flex gap-2 mt-5 justify-between">
-              <Link to={`/update-property/${property._id}`} className="px-8 py-2 bg-green-600 text-white text-sm rounded-lg hover:bg-green-700">Update</Link>
-              <button onClick={handleDeleteProperty} className="px-8 py-2 bg-red-600 text-white text-sm rounded-lg hover:bg-red-700">Delete</button>
+              <button
+                onClick={handleDeleteProperty}
+                className="flex-1 py-2 rounded-xl bg-red-600 text-white hover:bg-red-700"
+              >
+                Delete
+              </button>
             </div>
           </div>
+        </div>
+
+        <div className="max-w-4xl mx-auto mt-16 bg-white dark:bg-slate-800 border rounded-2xl p-6">
+          <h3 className="text-2xl font-bold mb-6 text-slate-800 dark:text-white">
+            Write a Review
+          </h3>
+
+          <textarea
+            value={reviewText}
+            onChange={e => setReviewText(e.target.value)}
+            placeholder="Share your experience..."
+            className="w-full border rounded-xl p-4 mb-4 bg-transparent"
+          />
+
+        <p className='font-bold'>Select Your Review by click Star: </p>
+          <div className="flex items-center gap-2 mb-4">   
+            {[1, 2, 3, 4, 5].map(star => (
+              <FaStar
+                key={star}
+                onClick={() => setRatingValue(star)}
+                className={`cursor-pointer ${
+                  star <= ratingValue ? 'text-amber-400' : 'text-slate-400'
+                }`}
+              />
+            ))}
+          </div>
+
+          <button
+            onClick={handleSubmitReview}
+            className="px-6 py-2 bg-blue-600 text-white rounded-xl hover:bg-blue-700"
+          >
+            Submit Review
+          </button>
         </div>
       </div>
-
-      {/* Review*/}
-      <div className="max-w-4xl mx-auto mt-12 bg-white p-6 rounded-xl shadow">
-        <h2 className="text-2xl font-bold text-gray-900 mb-4">Write a Review</h2>
-        <div className="mb-6 border rounded-lg p-4 bg-gray-50 flex flex-col md:flex-row gap-6">
-          <div className="md:w-2/3">
-            <label className="block text-gray-700 font-medium mb-2">Review:</label>
-            <textarea value={reviewText} onChange={(e) => setReviewText(e.target.value)} className="w-full border rounded p-3 h-32" placeholder="Share your experience..." />
-          </div>
-          <div className="md:w-1/3 flex flex-col justify-start gap-4 mt-4">
-            <label className="block text-gray-700 font-medium">Rating (1-5):</label>
-            <input type="number" min="1" max="5" value={ratingValue} onChange={(e) => setRatingValue(Number(e.target.value))} className="border w-full p-2 rounded" placeholder="Rate" />
-            <button onClick={handleSubmitReview} className="px-6 py-2 bg-blue-600 text-white rounded hover:bg-blue-700">Submit Review</button>
-          </div>
-        </div>
-
-        <div className="text-center mt-8">
-          <Link to='/all-ratings' className="text-center px-8 py-4 bg-green-600 text-white text-xl rounded-lg hover:bg-green-700">See All Ratings</Link>
-        </div>
-      </div>
-    </div>
+    </section>
   );
 };
+
+const Info = ({ label, value }) => (
+  <div className="flex justify-between border-b pb-2">
+    <span className="text-slate-500">{label}</span>
+    <span className="font-medium text-slate-800 dark:text-white">{value}</span>
+  </div>
+);
 
 export default PropertyDetails;

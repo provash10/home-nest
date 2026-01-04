@@ -1,11 +1,10 @@
-import React, { use, useContext } from 'react';
+import React, { useContext } from 'react';
 import { Link, useNavigate } from 'react-router';
 import { AuthContext } from '../../Contexts/AuthContext/AuthContext';
 import toast from 'react-hot-toast';
 
 const AddProperties = () => {
-    // const { user } = use(AuthContext)
-    const { user } = useContext(AuthContext)
+    const { user } = useContext(AuthContext);
     const navigate = useNavigate();
 
     const handleAddProperty = (e) => {
@@ -20,140 +19,172 @@ const AddProperties = () => {
             price: Number(e.target.price.value),
             image: e.target.image.value,
             postedBy: e.target.userName.value,
-            // postedBy: e.target.userEmail.value,
             createdAt: new Date().toISOString(),
             userEmail: e.target.userEmail.value,
             userName: e.target.userName.value,
-        }
-
-        console.log(formData); //checked ok
+        };
 
         fetch('https://homenest-server-ten.vercel.app/properties', {
             method: "POST",
-            headers: {
-                "Content-Type": "application/json",
-            },
-
-            // body: formData  -->400 showing
-            body: JSON.stringify(formData)
+            headers: { "Content-Type": "application/json" },
+            body: JSON.stringify(formData),
         })
             .then(res => res.json())
-            .then(data => {
-                console.log(data)
+            .then(() => {
                 toast.success("Property added successfully!");
                 navigate('/all-properties');
             })
-            .catch(err => {
-                console.log(err)
-                toast.error("Failed to add property!")
-            })
-    }
+            .catch(() => toast.error("Failed to add property!"));
+    };
 
     return (
-        <div className="min-h-screen flex items-center justify-center bg-gradient-to-br via-purple-300 to-pink-400">
-            <form onSubmit={handleAddProperty} className="bg-white shadow-2xl rounded-2xl p-10 m-5 space-y-8 border border-gray-200 max-w-3xl w-full">
+        <div className="min-h-screen bg-gradient-to-br via-purple-200 to-pink-200 dark:via-gray-800 dark:to-gray-900 py-12 px-4">
+            <div className="max-w-4xl mx-auto bg-white dark:bg-gray-900 rounded-2xl shadow-xl p-8 sm:p-10">
 
-                <h2 className="text-3xl font-extrabold text-gray-800 text-center mb-6">Add New Property</h2>
+                {/* Header */}
+                <div className="flex items-center justify-between mb-8">
+                    <h2 className="text-3xl font-bold text-gray-800 dark:text-gray-100">
+                        Add New Property
+                    </h2>
+                    <Link
+                        to="/"
+                        className="text-indigo-600 dark:text-indigo-400 font-medium hover:text-indigo-800 dark:hover:text-indigo-200"
+                    >
+                        Back Home
+                    </Link>
+                </div>
 
-                <div className="grid grid-cols-1 sm:grid-cols-2 gap-6">
-                    {/* property name */}
-                    <div className="col-span-1 sm:col-span-2">
-                        <label className="block text-gray-700 font-medium mb-2">Property Name</label>
+                {/* Form */}
+                <form onSubmit={handleAddProperty} className="space-y-6">
+
+                    {/* Property Name */}
+                    <div>
+                        <label className="block text-sm font-semibold text-gray-700 dark:text-gray-300 mb-1">
+                            Property Name
+                        </label>
                         <input
-                            type="text" name="name"
+                            type="text"
+                            name="name"
                             placeholder="Enter property name"
-                            className="w-full p-3 border border-gray-300 rounded-xl focus:outline-none focus:ring-2 focus:ring-indigo-400 transition"
+                            className="w-full p-3 border border-gray-300 dark:border-gray-700 rounded-xl dark:bg-gray-800 dark:text-gray-100 focus:outline-none focus:ring-2 focus:ring-indigo-500 transition"
+                            required
                         />
                     </div>
 
                     {/* Short Description */}
-                    <div className="col-span-1 sm:col-span-2">
-                        <label className="block text-gray-700 font-medium mb-2">Short Description</label>
+                    <div>
+                        <label className="block text-sm font-semibold text-gray-700 dark:text-gray-300 mb-1">
+                            Short Description
+                        </label>
                         <input
                             type="text"
                             name="short_description"
                             placeholder="Enter a short description"
-                            className="w-full p-3 border border-gray-300 rounded-xl focus:outline-none focus:ring-2 focus:ring-indigo-400 transition"
+                            className="w-full p-3 border border-gray-300 dark:border-gray-700 rounded-xl dark:bg-gray-800 dark:text-gray-100 focus:outline-none focus:ring-2 focus:ring-indigo-500 transition"
+                            required
                         />
                     </div>
 
-                    <div className="col-span-1 sm:col-span-2">
-                        <label className="block text-gray-700 font-medium mb-2">Description</label>
+                    {/* Full Description */}
+                    <div>
+                        <label className="block text-sm font-semibold text-gray-700 dark:text-gray-300 mb-1">
+                            Description
+                        </label>
                         <textarea
                             name="description"
-                            placeholder="Enter description"
-                            className="w-full p-3 border border-gray-300 rounded-xl focus:outline-none focus:ring-2 focus:ring-indigo-400 resize-none h-28 transition"
+                            placeholder="Enter full description"
+                            className="w-full p-3 border border-gray-300 dark:border-gray-700 rounded-xl dark:bg-gray-800 dark:text-gray-100 focus:outline-none focus:ring-2 focus:ring-indigo-500 resize-none h-28 transition"
                         />
                     </div>
 
-                    <div>
-                        <label className="block text-gray-700 font-medium mb-2">Category</label>
-                        <select name="category" className="w-full p-3 border border-gray-300 rounded-xl focus:outline-none focus:ring-2 focus:ring-indigo-400 transition">
-                            <option>Rent</option>
-                            <option>Sale</option>
-                            <option>Commercial</option>
-                            <option>Land</option>
-                        </select>
+                    {/* Grid */}
+                    <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+
+                        <div>
+                            <label className="block text-sm font-semibold text-gray-700 dark:text-gray-300 mb-1">Category</label>
+                            <select
+                                name="category"
+                                className="w-full p-3 border border-gray-300 dark:border-gray-700 rounded-xl dark:bg-gray-800 dark:text-gray-100 focus:outline-none focus:ring-2 focus:ring-indigo-500 transition"
+                            >
+                                <option>Rent</option>
+                                <option>Sale</option>
+                                <option>Commercial</option>
+                                <option>Land</option>
+                            </select>
+                        </div>
+
+                        <div>
+                            <label className="block text-sm font-semibold text-gray-700 dark:text-gray-300 mb-1">Price $</label>
+                            <input
+                                type="number"
+                                name="price"
+                                placeholder="Enter price"
+                                className="w-full p-3 border border-gray-300 dark:border-gray-700 rounded-xl dark:bg-gray-800 dark:text-gray-100 focus:outline-none focus:ring-2 focus:ring-indigo-500 transition"
+                                required
+                            />
+                        </div>
                     </div>
 
+                    {/* Location */}
                     <div>
-                        <label className="block text-gray-700 font-medium mb-2">Price $</label>
+                        <label className="block text-sm font-semibold text-gray-700 dark:text-gray-300 mb-1">Location</label>
                         <input
-                            type="number" name="price"
-                            placeholder="Enter price"
-                            className="w-full p-3 border border-gray-300 rounded-xl focus:outline-none focus:ring-2 focus:ring-indigo-400 transition"
-                        />
-                    </div>
-
-                    <div className="col-span-1 sm:col-span-2">
-                        <label className="block text-gray-700 font-medium mb-2">Location</label>
-                        <input
-                            type="text" name="location"
+                            type="text"
+                            name="location"
                             placeholder="City, area, or address"
-                            className="w-full p-3 border border-gray-300 rounded-xl focus:outline-none focus:ring-2 focus:ring-indigo-400 transition"
+                            className="w-full p-3 border border-gray-300 dark:border-gray-700 rounded-xl dark:bg-gray-800 dark:text-gray-100 focus:outline-none focus:ring-2 focus:ring-indigo-500 transition"
+                            required
                         />
                     </div>
 
-                    <div className="col-span-1 sm:col-span-2">
-                        <label className="block text-gray-700 font-medium mb-2">Image Link</label>
+                    {/* Image */}
+                    <div>
+                        <label className="block text-sm font-semibold text-gray-700 dark:text-gray-300 mb-1">Image URL</label>
                         <input
-                            type="text" name="image"
+                            type="text"
+                            name="image"
                             placeholder="Enter image URL"
-                            className="w-full p-3 border border-gray-300 rounded-xl focus:outline-none focus:ring-2 focus:ring-indigo-400 transition"
+                            className="w-full p-3 border border-gray-300 dark:border-gray-700 rounded-xl dark:bg-gray-800 dark:text-gray-100 focus:outline-none focus:ring-2 focus:ring-indigo-500 transition"
+                            required
                         />
                     </div>
 
-                    <div>
-                        <label className="block text-gray-700 font-medium mb-2">User Name</label>
-                        <input
-                            type="text" name="userName" defaultValue={user?.displayName || ""}
-                            readOnly
-                            className="w-full p-3 border border-gray-300 rounded-xl bg-gray-100"
-                        />
+                    {/* User Info */}
+                    <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+                        <div>
+                            <label className="block text-sm font-semibold text-gray-700 dark:text-gray-300 mb-1">User Name</label>
+                            <input
+                                type="text"
+                                name="userName"
+                                defaultValue={user?.displayName || ""}
+                                readOnly
+                                className="w-full p-3 border border-gray-300 dark:border-gray-700 rounded-xl bg-gray-100 dark:bg-gray-800 dark:text-gray-100"
+                            />
+                        </div>
+
+                        <div>
+                            <label className="block text-sm font-semibold text-gray-700 dark:text-gray-300 mb-1">User Email</label>
+                            <input
+                                type="email"
+                                name="userEmail"
+                                defaultValue={user?.email || ""}
+                                readOnly
+                                className="w-full p-3 border border-gray-300 dark:border-gray-700 rounded-xl bg-gray-100 dark:bg-gray-800 dark:text-gray-100"
+                            />
+                        </div>
                     </div>
 
-                    <div>
-                        <label className="block text-gray-700 font-medium mb-2">User Email</label>
-                        <input
-                            type="email" name="userEmail" defaultValue={user?.email || ""}
-                            readOnly
-                            className="w-full p-3 border border-gray-300 rounded-xl bg-gray-100"
-                        />
+                    {/* Submit */}
+                    <div className="pt-6 text-right">
+                        <button
+                            type="submit"
+                            className="bg-gradient-to-r from-indigo-600 via-purple-600 to-pink-600 text-white px-8 py-3 rounded-xl font-semibold shadow-md hover:scale-105 transition-transform"
+                        >
+                            Add Property
+                        </button>
                     </div>
-
-                </div>
-
-                <div className='flex justify-between'>
-                    <Link to='/' className="bg-gradient-to-r from-indigo-600 via-purple-600 to-pink-600 text-white p-3 rounded-2xl text-lg font-semibold hover:scale-105 transform transition-all shadow-lg">
-                        Back Home
-                    </Link>
-
-                    <button type="submit" className="bg-gradient-to-r from-indigo-600 via-purple-600 to-pink-600 text-white p-3 rounded-2xl text-lg font-semibold hover:scale-105 transform transition-all shadow-lg">
-                        Add Property
-                    </button>
-                </div>
-
-            </form>
+                </form>
+            </div>
         </div>
     );
 };

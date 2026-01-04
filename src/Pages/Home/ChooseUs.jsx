@@ -4,53 +4,71 @@ import { FaCheckCircle, FaShieldAlt, FaThumbsUp, FaMobileAlt, FaUsers, FaClock }
 const WhyChooseUs = () => {
   const features = [
     {
-      icon: <FaCheckCircle className="text-5xl text-blue-500 mb-4" />,
+      icon: <FaCheckCircle />,
       title: "Verified Listings",
       description: "All properties are verified for authenticity so you can trust what you see."
     },
     {
-      icon: <FaShieldAlt className="text-5xl text-green-500 mb-4" />,
+      icon: <FaShieldAlt />,
       title: "Secure Transactions",
       description: "We ensure safe and secure communication between buyers and sellers."
     },
     {
-      icon: <FaThumbsUp className="text-5xl text-yellow-500 mb-4" />,
+      icon: <FaThumbsUp />,
       title: "Easy to Use",
       description: "Simple and intuitive interface for searching, adding, or managing properties."
     },
     {
-      icon: <FaMobileAlt className="text-5xl text-pink-500 mb-4" />,
+      icon: <FaMobileAlt />,
       title: "Mobile Friendly",
       description: "Fully responsive design for smooth experience on mobile and tablet devices."
     },
     {
-      icon: <FaUsers className="text-5xl text-purple-500 mb-4" />,
+      icon: <FaUsers />,
       title: "Community Support",
       description: "Join a large community of buyers, sellers, and real estate enthusiasts."
     },
     {
-      icon: <FaClock className="text-5xl text-red-500 mb-4" />,
+      icon: <FaClock />,
       title: "Quick Updates",
       description: "Stay updated with the latest property listings and instant notifications."
     }
   ];
 
   return (
-    <section className="py-16 bg-gray-50">
+    <section className="py-4 bg-gray-50 dark:bg-slate-900">
       <div className="max-w-6xl mx-auto px-4 text-center">
-        <h2 className="text-4xl font-bold mb-8">Why Choose Us</h2>
-        <p className="text-gray-600 mb-12">
+        <h2 className="text-4xl font-bold mb-3 text-slate-800 dark:text-white">
+          Why Choose Us
+        </h2>
+        <p className="text-slate-600 dark:text-slate-400 mb-12 max-w-2xl mx-auto">
           Discover why thousands of users trust HomeNest for their real estate needs.
         </p>
+
         <div className="grid sm:grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
           {features.map((feature, index) => (
             <div
               key={index}
-              className="bg-white p-8 rounded-3xl shadow-xl hover:shadow-2xl transform hover:-translate-y-2 transition duration-500"
+              className="
+                group bg-white dark:bg-slate-800
+                p-8 rounded-2xl border border-slate-200 dark:border-slate-700
+                transition-all duration-300
+                hover:-translate-y-1 hover:border-blue-500
+              "
             >
-              <div className="mb-4">{feature.icon}</div>
-              <h3 className="text-2xl font-semibold mb-3">{feature.title}</h3>
-              <p className="text-gray-500">{feature.description}</p>
+              <div className="w-14 h-14 flex items-center justify-center rounded-xl
+                bg-blue-50 dark:bg-blue-900/30 mb-6 mx-auto
+                text-blue-600 dark:text-blue-400 text-2xl
+                group-hover:scale-105 transition">
+                {feature.icon}
+              </div>
+
+              <h3 className="text-xl font-semibold mb-3 text-slate-800 dark:text-white">
+                {feature.title}
+              </h3>
+              <p className="text-slate-600 dark:text-slate-400 text-sm leading-relaxed">
+                {feature.description}
+              </p>
             </div>
           ))}
         </div>
@@ -58,5 +76,6 @@ const WhyChooseUs = () => {
     </section>
   );
 };
+
 
 export default WhyChooseUs;

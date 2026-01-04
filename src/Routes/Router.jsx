@@ -83,7 +83,7 @@ export const router = createBrowserRouter([
                         path: 'my-ratings',
                         element: <MyRatings></MyRatings>,
                     },
-                    // NEW: Admin routes
+                    // Admin routes
                     {
                         path: 'users',
                         element: <AdminRoute><AdminUsers /></AdminRoute>

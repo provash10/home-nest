@@ -61,7 +61,7 @@ const AdminUsers = () => {
       
       if (data.success) {
         toast.success(`User role updated to ${newRole}`);
-        // Update local state
+        // update local state
         setUsers(prev => prev.map(user => 
           user.email === email ? { ...user, role: newRole } : user
         ));
@@ -106,7 +106,6 @@ const AdminUsers = () => {
 
   return (
     <div className="space-y-6">
-      {/* Header */}
       <div className="flex justify-between items-center">
         <div>
           <h1 className="text-3xl font-bold flex items-center gap-3">
@@ -124,7 +123,7 @@ const AdminUsers = () => {
         </div>
       </div>
 
-      {/* Stats Cards */}
+      {/* stats cards */}
       <div className="grid grid-cols-1 md:grid-cols-4 gap-4">
         <div className="card bg-base-100 shadow">
           <div className="card-body">
@@ -181,7 +180,7 @@ const AdminUsers = () => {
         </div>
       </div>
 
-      {/* Search and Filter */}
+      {/* search filter */}
       <div className="card bg-base-100 shadow">
         <div className="card-body">
           <div className="flex flex-col md:flex-row gap-4 items-center justify-between">
@@ -212,7 +211,7 @@ const AdminUsers = () => {
         </div>
       </div>
 
-      {/* Users Table */}
+      {/* users table */}
       <div className="card bg-base-100 shadow">
         <div className="card-body">
           <div className="overflow-x-auto">

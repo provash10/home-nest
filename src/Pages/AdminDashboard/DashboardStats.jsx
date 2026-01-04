@@ -65,7 +65,6 @@ const DashboardStats = () => {
 
   return (
     <div className="space-y-6">
-      {/* Header */}
       <div className="flex justify-between items-center">
         <div>
           <h1 className="text-3xl font-bold flex items-center gap-3">
@@ -92,7 +91,6 @@ const DashboardStats = () => {
         </div>
       </div>
 
-      {/* Key Metrics */}
       <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4">
         <div className="card bg-gradient-to-r from-primary to-secondary text-primary-content shadow-lg">
           <div className="card-body">
@@ -163,9 +161,9 @@ const DashboardStats = () => {
         </div>
       </div>
 
-      {/* Charts Section */}
+      {/* charts section */}
       <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
-        {/* Line Chart - Growth Over Time */}
+        {/* line chart*/}
         <div className="card bg-base-100 shadow-lg">
           <div className="card-body">
             <h3 className="card-title flex items-center gap-2">
@@ -210,7 +208,7 @@ const DashboardStats = () => {
           </div>
         </div>
 
-        {/* Pie Chart - Category Distribution */}
+        {/* Pie chart*/}
         <div className="card bg-base-100 shadow-lg">
           <div className="card-body">
             <h3 className="card-title flex items-center gap-2">
@@ -242,7 +240,7 @@ const DashboardStats = () => {
         </div>
       </div>
 
-      {/* Area Chart and Bar Chart */}
+      {/* area chart & bar chart */}
       <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
         {/* Area Chart - Revenue/Engagement */}
         <div className="card bg-base-100 shadow-lg">
@@ -279,7 +277,7 @@ const DashboardStats = () => {
           </div>
         </div>
 
-        {/* Bar Chart - Comparison */}
+        {/* bar chart - Comparison */}
         <div className="card bg-base-100 shadow-lg">
           <div className="card-body">
             <h3 className="card-title flex items-center gap-2">
@@ -302,9 +300,9 @@ const DashboardStats = () => {
         </div>
       </div>
 
-      {/* Detailed Statistics */}
+      {/* statistics */}
       <div className="grid grid-cols-1 lg:grid-cols-3 gap-6">
-        {/* Recent Activities */}
+        {/* recent activities */}
         <div className="card bg-base-100 shadow-lg lg:col-span-2">
           <div className="card-body">
             <h3 className="card-title flex items-center gap-2">
@@ -356,7 +354,7 @@ const DashboardStats = () => {
           </div>
         </div>
 
-        {/* Performance Metrics */}
+        {/* performance metrics */}
         <div className="card bg-base-100 shadow-lg">
           <div className="card-body">
             <h3 className="card-title flex items-center gap-2">
@@ -415,7 +413,7 @@ const DashboardStats = () => {
         </div>
       </div>
 
-      {/* Export and Actions */}
+      {/* export /actions */}
       <div className="card bg-base-100 shadow-lg">
         <div className="card-body">
           <div className="flex flex-col md:flex-row justify-between items-center gap-4">

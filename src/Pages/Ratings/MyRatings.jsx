@@ -26,17 +26,23 @@ const MyRatings = () => {
   }, [user]);
 
   if (loading) {
-    return <div className="text-center py-20 text-xl font-semibold">Loading...</div>;
+    return (
+      <div className="text-center py-20 text-xl font-semibold text-gray-700 dark:text-gray-200">
+        Loading...
+      </div>
+    );
   }
 
   return (
     <div className="container mx-auto px-4 py-8">
-      <h2 className="text-3xl font-bold text-center mb-8">
-        My Ratings <span className="text-blue-600 text-xl">({ratings.length})</span>
+      <h2 className="text-3xl font-bold text-center mb-8 text-gray-900 dark:text-gray-100">
+        My Ratings <span className="text-blue-600 dark:text-blue-400 text-xl">({ratings.length})</span>
       </h2>
 
       {ratings.length === 0 ? (
-        <p className="text-center text-gray-500">You have not submitted any ratings yet.</p>
+        <p className="text-center text-gray-500 dark:text-gray-400">
+          You have not submitted any ratings yet.
+        </p>
       ) : (
         <div className="flex flex-col gap-6">
           {ratings.map((rating) => (

@@ -11,7 +11,7 @@ const Settings = () => {
   const [activeTab, setActiveTab] = useState('general');
   const [loading, setLoading] = useState(false);
   
-  // General settings
+  // general settings
   const [generalSettings, setGeneralSettings] = useState({
     name: 'John Doe',
     email: 'john@example.com',
@@ -82,7 +82,7 @@ const Settings = () => {
       </div>
 
       <div className="grid grid-cols-1 lg:grid-cols-4 gap-6">
-        {/* Sidebar Tabs */}
+        {/* sidebar tabs */}
         <div className="lg:col-span-1">
           <div className="card bg-base-100 shadow-lg">
             <div className="card-body p-4">
@@ -276,7 +276,7 @@ const Settings = () => {
                 </div>
               )}
 
-              {/* Security Settings */}
+              {/* eecurity settings */}
               {activeTab === 'security' && (
                 <div className="space-y-6">
                   <h2 className="text-xl font-bold flex items-center gap-2">
@@ -301,7 +301,7 @@ const Settings = () => {
                       />
                     </div>
                     
-                    {/* Login Alerts */}
+                    {/* login alerts */}
                     <div className="flex items-center justify-between p-3 bg-base-200 rounded-lg">
                       <div>
                         <p className="font-semibold">Login Alerts</p>
@@ -318,7 +318,7 @@ const Settings = () => {
                       />
                     </div>
                     
-                    {/* Change Password */}
+                    {/* change password */}
                     <div className="p-3 bg-base-200 rounded-lg">
                       <h3 className="font-semibold mb-4">Change Password</h3>
                       <div className="space-y-4">
@@ -390,7 +390,7 @@ const Settings = () => {
                 </div>
               )}
 
-              {/* Appearance Settings */}
+              {/* appearance Settings */}
               {activeTab === 'appearance' && (
                 <div className="space-y-6">
                   <h2 className="text-xl font-bold flex items-center gap-2">
@@ -398,7 +398,7 @@ const Settings = () => {
                   </h2>
                   
                   <div className="space-y-4">
-                    {/* Theme Selection */}
+                    {/* theme Selection */}
                     <div className="form-control">
                       <label className="label">
                         <span className="label-text">Theme</span>
@@ -457,7 +457,7 @@ const Settings = () => {
                       </div>
                     </div>
                     
-                    {/* Sidebar Color */}
+                    {/* sidebar color */}
                     <div className="form-control">
                       <label className="label">
                         <span className="label-text">Sidebar Color</span>
@@ -479,7 +479,7 @@ const Settings = () => {
                       </div>
                     </div>
                     
-                    {/* Density */}
+                    {/* density */}
                     <div className="form-control">
                       <label className="label">
                         <span className="label-text">Density</span>

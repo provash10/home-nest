@@ -5,6 +5,8 @@ import ChooseUs from './ChooseUs';
 import Banner from './Banner';
 import Reviews from './Reviews';
 import Services from './Services';
+import LetterAnmate from '../../Components/Uiverse/LetterAnimate';
+import Card from '../../Components/Uiverse/Card';
 
 
 const reviewPromise = fetch('/reviews.json').then(res=>res.json());
@@ -24,13 +26,15 @@ const Home = () => {
         property.location.toLowerCase().includes(search.toLowerCase())
     );
     return (
-        <div>
+        <div className='max-w-7xl mx-auto space-y-10'>
             <Banner></Banner>
-            <div className='text-center text-3xl font-bold mt-5 underline'>
+            <LetterAnmate>
+                <div className='text-center text-3xl font-bold mt-5 underline'>
                 Featured Property
             </div>
+            </LetterAnmate>
 
-            <div className="flex justify-between items-center mb-5">
+            <div className="flex justify-between items-center mb-5 px-8">
                 <h1 className='text-2xl text-black font-bold'>
                     Properties Found <span className='text-blue-600 text-xl font-bold'>({filteredProperties.length})</span>
                 </h1>
@@ -44,10 +48,11 @@ const Home = () => {
             </div>
 
             
-            <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-3">
+            <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-3 px-8">
                 {
                     data.map(property => <PropertyCard key={property._id} property={property}></PropertyCard>)
                 }
+                
             </div>
 
             <ChooseUs></ChooseUs>

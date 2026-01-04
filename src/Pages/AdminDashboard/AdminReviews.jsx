@@ -100,7 +100,6 @@ const AdminReviews = () => {
 
   return (
     <div className="space-y-6">
-      {/* Header */}
       <div className="flex justify-between items-center">
         <div>
           <h1 className="text-3xl font-bold flex items-center gap-3">
@@ -122,7 +121,6 @@ const AdminReviews = () => {
         </div>
       </div>
 
-      {/* Stats Cards */}
       <div className="grid grid-cols-1 md:grid-cols-4 gap-4">
         <div className="card bg-base-100 shadow">
           <div className="card-body">
@@ -189,7 +187,6 @@ const AdminReviews = () => {
         </div>
       </div>
 
-      {/* Search and Filter */}
       <div className="card bg-base-100 shadow">
         <div className="card-body">
           <div className="flex flex-col md:flex-row gap-4 items-center justify-between">
@@ -232,7 +229,6 @@ const AdminReviews = () => {
             </div>
           </div>
           
-          {/* rating filter chips */}
           <div className="flex flex-wrap gap-2 mt-4">
             <button 
               className={`btn btn-sm ${ratingFilter === 'all' ? 'btn-primary' : 'btn-ghost'}`}
@@ -253,7 +249,6 @@ const AdminReviews = () => {
         </div>
       </div>
 
-      {/* reviews table */}
       <div className="card bg-base-100 shadow">
         <div className="card-body">
           <div className="overflow-x-auto">
